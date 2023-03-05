@@ -3,10 +3,10 @@ import Footer from "@/components/Footer";
 import Head from "next/head";
 import Image from "next/image";
 
-import { data } from "@/lib/champion.json";
+import data from "@/lib/champion.json";
 
 export default function ChampionGalleryPage() {
-  const champions = Object.values(data);
+  const champions = Object.values(data.data);
   const sortedChampions = champions.sort((a, b) => {
     if (a.name < b.name) {
       return -1;
@@ -16,7 +16,6 @@ export default function ChampionGalleryPage() {
     }
     return 0;
   });
-  console.table(sortedChampions);
   return (
     <>
       <Head>
