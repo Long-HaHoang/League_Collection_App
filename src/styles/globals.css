@@ -52,6 +52,15 @@ a {
   text-decoration: none;
 }
 
+main {
+  border: solid blue;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 header {
   padding: 0.5rem;
   display: flex;
@@ -78,6 +87,25 @@ footer div {
   justify-content: center;
   align-items: flex-end;
   gap: 1rem;
+}
+
+ul {
+  border: solid green;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.championCard {
+  border: solid red;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (prefers-color-scheme: dark) {

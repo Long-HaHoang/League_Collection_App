@@ -34,10 +34,10 @@ export default function ChampionGalleryPage() {
         <ul>
           {sortedChampions.map((champion) => {
             return (
-              <li key={champion.id}>
+              <li key={champion.id} className="championCard">
                 {champion.name}
                 <Image
-                  src={"/tiles/Aatrox_0.jpg"}
+                  src={`/tiles/${champion.id}_0.jpg`}
                   height={250}
                   width={250}
                   alt={`${champion.name} default tile`}
