@@ -1,38 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# LoL Collector
 
-## Getting Started
+> [Lol Collector] was created under Riot Games' ["Legal Jibber Jabber"](https://www.riotgames.com/en/legal) [^1] policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
 
-First, run the development server:
+This app will help you to keep track of how many champions and skins you already collected.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+In the upcoming calcuations page you can see how much blue essence and riot points you need to collect all avaible champions and skins.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Champion Collector
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+First feature: Gallery of all currently avaible champions.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Bot Game Champion Collector
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+To keep track with what champion you already played a bot game.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Skin Collection
 
-## Learn More
+To keep track what skins you already have.
 
-To learn more about Next.js, take a look at the following resources:
+## Skin Wishlist/Favorite
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Add skins to the wishlist or favorite list.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Skin Collection Calculator
 
-## Deploy on Vercel
+Calculates the following
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Skin collection RP
+- All skins RP
+- Missing skins RP
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[^1]: This is an external Link to the Riot Legal Jibber Jabber
