@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import Head from "next/head";
+import Image from "next/image";
 
-import { data } from "@/lib/champion/champion.json";
+import { data } from "@/lib/champion.json";
 
 export default function ChampionGalleryPage() {
   const champions = Object.values(data);
@@ -32,7 +33,17 @@ export default function ChampionGalleryPage() {
         <h2>Champions</h2>
         <ul>
           {sortedChampions.map((champion) => {
-            return <li key={champion.id}>{champion.name}</li>;
+            return (
+              <li key={champion.id}>
+                {champion.name}
+                <Image
+                  src={"/tiles/Aatrox_0.jpg"}
+                  height={250}
+                  width={250}
+                  alt={`${champion.name} default tile`}
+                />
+              </li>
+            );
           })}
         </ul>
       </main>
