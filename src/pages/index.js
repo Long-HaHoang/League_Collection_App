@@ -16,13 +16,13 @@ export default function Home() {
         <h1>League Collection Tracker</h1>
       </header>
       <section className={styles.section}>
-        <p>
+        <small>
           &quot;League Collection Tracker&quot; is not endorsed by Riot Games
           and does not reflect the views or opinions of Riot Games or anyone
           officially involved in producing or managing Riot Games properties.
           Riot Games and all associated properties are trademarks or registered
           trademarks of Riot Games, Inc
-        </p>
+        </small>
       </section>
       <main className={styles.main}>
         <Link href={"/ChampionGallery"}>Champion Gallery</Link>
