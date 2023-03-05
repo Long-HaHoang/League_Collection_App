@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import ChampionCart from "@/components/ChampionCart";
 import Head from "next/head";
-import Image from "next/image";
 
 import data from "@/lib/champion.json";
 
@@ -16,6 +16,7 @@ export default function ChampionGalleryPage() {
     }
     return 0;
   });
+
   return (
     <>
       <Head>
@@ -32,17 +33,7 @@ export default function ChampionGalleryPage() {
         <h2>Champions</h2>
         <ul>
           {sortedChampions.map((champion) => {
-            return (
-              <li key={champion.id} className="championCard">
-                {champion.name}
-                <Image
-                  src={`/tiles/${champion.id}_0.jpg`}
-                  height={250}
-                  width={250}
-                  alt={`${champion.name} default tile`}
-                />
-              </li>
-            );
+            return <ChampionCart key={champion.id} champion={champion} />;
           })}
         </ul>
       </main>
