@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import styles from "@/styles/ChampionGallery.module.css";
 
 export default function ChampionCart({ champion }) {
   const [active, setActive] = useState(false);
@@ -8,7 +9,7 @@ export default function ChampionCart({ champion }) {
     setActive(!active);
   }
   return (
-    <li className="championCard" onClick={handleClick}>
+    <li className={styles.li} onClick={handleClick}>
       {champion.name}
       {active ? (
         <Image

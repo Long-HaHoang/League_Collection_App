@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
-import ChampionCart from "@/components/ChampionCart";
+import ChampionCart from "@/components/ChampionCard";
 import Head from "next/head";
 
 import data from "@/lib/champion.json";
+import styles from "@/styles/ChampionGallery.module.css";
 
 export default function ChampionGalleryPage() {
   const champions = Object.values(data.data);
@@ -31,7 +32,8 @@ export default function ChampionGalleryPage() {
       </header>
       <main>
         <h2>Champions</h2>
-        <ul>
+        <p>{`0 of ${sortedChampions.length}`}</p>
+        <ul className={styles.ul}>
           {sortedChampions.map((champion) => {
             return <ChampionCart key={champion.id} champion={champion} />;
           })}
