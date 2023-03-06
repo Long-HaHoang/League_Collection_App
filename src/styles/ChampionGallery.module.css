@@ -16,6 +16,7 @@
 }
 
 .li {
+  position: relative;
   border: solid red;
   list-style: none;
   display: flex;
@@ -23,4 +24,22 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.li > p {
+  width: 100%;
+  text-align: center;
+  background-color: #00000080;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.li > button {
+  position: absolute;
+  bottom: 1em;
+  width: 60%;
+  height: 10%;
+  z-index: 2;
 }
