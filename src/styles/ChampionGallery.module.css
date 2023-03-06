@@ -1,3 +1,11 @@
+.h2 {
+  text-align: center;
+}
+
+.p {
+  text-align: center;
+}
+
 .ul {
   padding: 0;
   display: flex;

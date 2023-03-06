@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import ChampionCart from "@/components/ChampionCard";
 import Head from "next/head";
 
-import data from "@/lib/champion.json";
+import data from "@/lib/championFull.json";
 import styles from "@/styles/ChampionGallery.module.css";
 
 export default function ChampionGalleryPage() {
@@ -31,8 +31,8 @@ export default function ChampionGalleryPage() {
         <Link href={"/"}>&larr; Home</Link>
       </header>
       <main>
-        <h2>Champions</h2>
-        <p>{`0 of ${sortedChampions.length}`}</p>
+        <h2 className={styles.h2}>Champions</h2>
+        <p className={styles.p}>{`0 of ${sortedChampions.length}`}</p>
         <ul className={styles.ul}>
           {sortedChampions.map((champion) => {
             return <ChampionCart key={champion.id} champion={champion} />;

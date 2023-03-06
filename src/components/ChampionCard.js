@@ -9,7 +9,7 @@ export default function ChampionCart({ champion }) {
     setActive(!active);
   }
   return (
-    <li className={styles.li} onClick={handleClick}>
+    <li className={styles.li}>
       {champion.name}
       {active ? (
         <Image
@@ -27,6 +27,9 @@ export default function ChampionCart({ champion }) {
           style={{ filter: "grayscale(100%)" }}
         />
       )}
+      <button type="button" onClick={handleClick}>
+        Collect
+      </button>
     </li>
   );
 }
