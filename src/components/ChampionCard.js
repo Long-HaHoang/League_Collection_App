@@ -10,7 +10,7 @@ export default function ChampionCart({ champion }) {
   }
   return (
     <li className={styles.li}>
-      {champion.name}
+      <p>{champion.name}</p>
       {active ? (
         <Image
           src={`/tiles/${champion.id}_0.jpg`}
@@ -28,7 +28,7 @@ export default function ChampionCart({ champion }) {
         />
       )}
       <button type="button" onClick={handleClick}>
-        Collect
+        {active ? "Remove" : "Collect"}
       </button>
     </li>
   );
