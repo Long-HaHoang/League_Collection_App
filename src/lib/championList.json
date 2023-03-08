@@ -1,0 +1,52 @@
+{
+  "Aatrox": {
+    "id": "Aatrox",
+    "key": 266,
+    "name": "Aatrox",
+    "title": "the Darkin Blade",
+    "cost": [{ "blueEssence": 4800, "rp": 880 }],
+    "release": "2013-06-12",
+    "image": {
+      "tile": "Aattrox_0.jpg"
+    },
+    "skins": [
+      {
+        "id": 266000,
+        "num": 0,
+        "name": "default",
+        "chromas": false
+      },
+      {
+        "id": "266001",
+        "num": 1,
+        "name": "Justicar Aatrox",
+        "chromas": false
+      },
+      { "id": "266002", "num": 2, "name": "Mecha Aatrox", "chromas": true },
+      {
+        "id": "266003",
+        "num": 3,
+        "name": "Sea Hunter Aatrox",
+        "chromas": false
+      },
+      {
+        "id": "266007",
+        "num": 7,
+        "name": "Blood Moon Aatrox",
+        "chromas": false
+      },
+      {
+        "id": "266008",
+        "num": 8,
+        "name": "Blood Moon Aatrox Prestige Edition",
+        "chromas": false
+      },
+      {
+        "id": "266009",
+        "num": 9,
+        "name": "Victorious Aatrox",
+        "chromas": true
+      }
+    ]
+  }
+}
