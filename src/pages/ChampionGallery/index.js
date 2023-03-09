@@ -4,20 +4,33 @@ import ChampionCart from "@/components/ChampionCard";
 import Head from "next/head";
 
 import data from "@/lib/championFull.json";
+import test from "@/lib/lolchamp.json";
 import styles from "@/styles/ChampionGallery.module.css";
 
 export default function ChampionGalleryPage() {
-  const champions = Object.values(data.data);
-  const sortedChampions = champions.sort((a, b) => {
-    if (a.name < b.name) {
+  const champions = Object.values(test);
+
+  let newSortedChampions = [];
+  for (const [key, value] of Object.entries(test.data)) {
+    newSortedChampions.push({
+      id: key.replace(/\s+/g, ""),
+      name: key,
+      value,
+    });
+  }
+
+  const sortedChampions = newSortedChampions.sort((a, b) => {
+    if (a.id < b.id) {
       return -1;
     }
-    if (a.name > b.name) {
+    if (a.id > b.id) {
       return 1;
     }
     return 0;
   });
+  console.log(newSortedChampions);
 
+  console.log("sort", sortedChampions);
   return (
     <>
       <Head>

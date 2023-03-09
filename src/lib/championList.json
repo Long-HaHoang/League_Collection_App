@@ -14,37 +14,52 @@
         "id": 266000,
         "num": 0,
         "name": "default",
+        "availability": "Available",
         "chromas": false
       },
       {
         "id": "266001",
         "num": 1,
         "name": "Justicar Aatrox",
+        "cost": 975,
+        "release": "2013-06-12",
+        "set": "Justicar",
+        "availability": "Available",
         "chromas": false
       },
-      { "id": "266002", "num": 2, "name": "Mecha Aatrox", "chromas": true },
+      {
+        "id": "266002",
+        "num": 2,
+        "name": "Mecha Aatrox",
+        "availability": "Available",
+        "chromas": true
+      },
       {
         "id": "266003",
         "num": 3,
         "name": "Sea Hunter Aatrox",
+        "availability": "Available",
         "chromas": false
       },
       {
         "id": "266007",
         "num": 7,
         "name": "Blood Moon Aatrox",
+        "availability": "Available",
         "chromas": false
       },
       {
         "id": "266008",
         "num": 8,
         "name": "Blood Moon Aatrox Prestige Edition",
+        "availability": "Rare",
         "chromas": false
       },
       {
         "id": "266009",
         "num": 9,
         "name": "Victorious Aatrox",
+        "availability": "Limited",
         "chromas": true
       }
     ]

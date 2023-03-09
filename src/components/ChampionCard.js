@@ -16,14 +16,14 @@ export default function ChampionCart({ champion }) {
           src={`/tiles/${champion.id}_0.jpg`}
           height={250}
           width={250}
-          alt={`${champion.name} default tile`}
+          alt={`${champion.id} default tile`}
         />
       ) : (
         <Image
           src={`/tiles/${champion.id}_0.jpg`}
           height={250}
           width={250}
-          alt={`${champion.name} default tile`}
+          alt={`${champion.id} default tile`}
           style={{ filter: "grayscale(100%)" }}
         />
       )}
