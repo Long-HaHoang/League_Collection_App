@@ -8,18 +8,18 @@ import test from "@/lib/lolchamp.json";
 import styles from "@/styles/ChampionGallery.module.css";
 
 export default function ChampionGalleryPage() {
-  const champions = Object.values(test);
+  const champions = Object.values(data.data);
 
-  let newSortedChampions = [];
-  for (const [key, value] of Object.entries(test.data)) {
-    newSortedChampions.push({
-      id: key.replace(/\s+/g, ""),
-      name: key,
-      value,
-    });
-  }
+  // let newSortedChampions = [];
+  // for (const [key, value] of Object.entries(data.data)) {
+  //   newSortedChampions.push({
+  //     id: key.replace(/\s+/g, ""),
+  //     name: key,
+  //     value,
+  //   });
+  // }
 
-  const sortedChampions = newSortedChampions.sort((a, b) => {
+  const sortedChampions = champions.sort((a, b) => {
     if (a.id < b.id) {
       return -1;
     }
@@ -28,9 +28,7 @@ export default function ChampionGalleryPage() {
     }
     return 0;
   });
-  console.log(newSortedChampions);
 
-  console.log("sort", sortedChampions);
   return (
     <>
       <Head>
