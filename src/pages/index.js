@@ -26,6 +26,7 @@ export default function Home() {
       </section>
       <main className={styles.main}>
         <Link href={"/ChampionGallery"}>Champion Gallery</Link>
+        <Link href={"/championskins"}>Champion Skins</Link>
       </main>
       <Footer />
     </>
