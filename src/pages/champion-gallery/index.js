@@ -4,7 +4,6 @@ import ChampionCart from "@/components/ChampionCard";
 import Head from "next/head";
 
 import data from "@/lib/championFull.json";
-import test from "@/lib/lolchamp.json";
 import styles from "@/styles/ChampionGallery.module.css";
 
 export default function ChampionGalleryPage() {
