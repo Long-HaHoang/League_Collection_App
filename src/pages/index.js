@@ -25,8 +25,8 @@ export default function Home() {
         </small>
       </section>
       <main className={styles.main}>
-        <Link href={"/ChampionGallery"}>Champion Gallery</Link>
-        <Link href={"/championskins"}>Champion Skins</Link>
+        <Link href={"/champion-gallery"}>Champion Gallery</Link>
+        <Link href={"/champion-skins"}>Champion Skins</Link>
       </main>
       <Footer />
     </>
