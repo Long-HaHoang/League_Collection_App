@@ -1,20 +1,53 @@
 import Link from "next/link";
 import Footer from "@/components/Footer";
-import ChampionCart from "@/components/ChampionCard";
+import ChampionCard from "@/components/ChampionCard";
 import Head from "next/head";
+import { useState, useEffect } from "react";
 
-import data from "@/lib/championFull.json";
-import test from "@/lib/lolchamp.json";
 import styles from "@/styles/ChampionGallery.module.css";
 
 export default function ChampionGalleryPage() {
-  const champions = Object.values(data.data);
+  const [championData, setChampionData] = useState([]);
+  const [versions, setVersions] = useState([]);
 
-  const sortedChampions = champions.sort((a, b) => {
-    if (a.id < b.id) {
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Fetch data from url1
+        const responseVersion = await fetch(
+          "https://ddragon.leagueoflegends.com/api/versions.json"
+        );
+        if (!responseVersion.ok) {
+          throw new Error(`HTTP error! status: ${responseVersion.status}`);
+        }
+        const versions = await responseVersion.json();
+        setVersions(versions);
+
+        // Fetch data from url2 using data from url1
+        const responseChampionFull = await fetch(
+          `http://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/en_US/championFull.json`
+        );
+        if (!responseChampionFull.ok) {
+          throw new Error(`HTTP error! status: ${responseChampionFull.status}`);
+        }
+        const championData = await responseChampionFull.json();
+        setChampionData(championData);
+
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // handle the error here, e.g. show an error message to the user
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const sortedChampions = Object.values(championData.data).sort((a, b) => {
+    if (a.name < b.name) {
       return -1;
     }
-    if (a.id > b.id) {
+    if (a.name > b.name) {
       return 1;
     }
     return 0;
@@ -34,10 +67,11 @@ export default function ChampionGalleryPage() {
       </header>
       <main>
         <h2 className={styles.h2}>Champions</h2>
+        <h3>Version: {versions[0]}</h3>
         <p className={styles.p}>{`0 of ${sortedChampions.length}`}</p>
         <ul className={styles.ul}>
           {sortedChampions.map((champion) => {
-            return <ChampionCart key={champion.id} champion={champion} />;
+            return <ChampionCard key={champion.id} champion={champion} />;
           })}
         </ul>
       </main>
