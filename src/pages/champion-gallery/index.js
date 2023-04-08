@@ -1,11 +1,8 @@
-import Link from "next/link";
-import Footer from "@/components/Footer";
 import ChampionCard from "@/components/ChampionCard";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-
-import styles from "@/styles/ChampionGallery.module.css";
+import Header from "@/components/Header";
 
 export default function ChampionGalleryPage() {
   const [versions, setVersions] = useState([]);
@@ -34,17 +31,22 @@ export default function ChampionGalleryPage() {
         }
         const championFullData = await responseChampionFull.json();
 
-        setSortedChampions(
-          Object.values(championFullData.data).sort((a, b) => {
-            if (a.name < b.name) {
-              return -1;
-            }
-            if (a.name > b.name) {
-              return 1;
-            }
-            return 0;
-          })
-        );
+        try {
+          setSortedChampions(
+            Object.values(championFullData.data).sort((a, b) => {
+              if (a.name < b.name) {
+                return -1;
+              }
+              if (a.name > b.name) {
+                return 1;
+              }
+              return 0;
+            })
+          );
+        } catch (error) {
+          console.error("Error handling JSON:", error);
+          // handle the error here, e.g. show an error message to the user
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
         // handle the error here, e.g. show an error message to the user
@@ -62,23 +64,19 @@ export default function ChampionGalleryPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <h1>Champion Gallery</h1>
-        <Link href={"/"}>&larr; Home</Link>
-      </header>
+      <Header>Champion Gallery</Header>
       <StyledMain>
-        <h2 className={styles.h2}>Champions</h2>
+        <h2>Champions</h2>
         <h3>Version: {versions[0]}</h3>
-        <CounterContaier>
-          <p className={styles.p}>{`0 of ${sortedChampions.length}`}</p>
-        </CounterContaier>
-        <ul className={styles.ul}>
+        <div>
+          <p>{`0 of ${sortedChampions.length}`}</p>
+        </div>
+        <ul>
           {sortedChampions.map((champion) => {
             return <ChampionCard key={champion.id} champion={champion} />;
           })}
         </ul>
       </StyledMain>
-      <Footer />
     </>
   );
 }
@@ -89,9 +87,26 @@ const StyledMain = styled.main`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-`;
 
-const CounterContaier = styled.div`
-  border: solid rgb(var(--foreground-rgb));
-  padding: 0.5rem;
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  div {
+    border: solid rgb(var(--foreground-rgb));
+    padding: 0.5rem;
+  }
+
+  ul {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
 `;

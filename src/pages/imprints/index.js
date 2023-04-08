@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import Link from "next/link";
 import Head from "next/head";
 
@@ -100,7 +99,6 @@ export default function ImprintPage() {
           </Link>
         </p>
       </main>
-      <Footer />
     </>
   );
 }
