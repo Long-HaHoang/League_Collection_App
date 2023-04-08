@@ -16,7 +16,7 @@ export default function ChampionCard({ champion }) {
       <p>{champion.name}</p>
       {active ? (
         <Image
-          src={championTileLocal}
+          src={championTileURL}
           height={250}
           width={250}
           alt={`${champion.id} default tile`}
@@ -24,7 +24,7 @@ export default function ChampionCard({ champion }) {
         />
       ) : (
         <Image
-          src={championTileLocal}
+          src={championTileURL}
           height={250}
           width={250}
           alt={`${champion.id} default tile`}
