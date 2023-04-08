@@ -1,22 +1,76 @@
 import { createGlobalStyle, css } from "styled-components";
 
 const globalStytle = css`
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
+  :root {
+    --max-width: 1100px;
+    --border-radius: 12px;
+    --foreground-rgb: 0, 0, 0;
+    --background-rgb: 255, 255, 255;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-rgb: 0, 0, 0;
+    }
   }
 
   * {
+    box-sizing: border-box;
+    padding: 0;
     margin: 0;
   }
 
   body {
-    font-family: Roboto;
-    font-size: 16px;
-    color: #333;
-    margin: 0;
-    padding: 0;
+    border: solid gold;
+    height: 100%;
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  header {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  footer {
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  footer div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
   }
 `;
 
