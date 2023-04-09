@@ -28,7 +28,6 @@ export default function Home() {
         <Link href={"/champion-gallery"}>Champion Gallery</Link>
         <Link href={"/champion-skins"}>Champion Skins</Link>
       </StyledMain>
-      <Footer />
     </>
   );
 }

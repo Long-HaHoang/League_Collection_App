@@ -18,7 +18,6 @@ export default function ChampionSkinsPage() {
       <main>
         <p>Work in progress</p>
       </main>
-      <Footer />
     </>
   );
 }
