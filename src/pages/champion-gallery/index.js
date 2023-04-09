@@ -24,7 +24,7 @@ export default function ChampionGalleryPage() {
         setVersions(versions);
 
         // Fetch data from url2 using data from url1
-        const responseChampionFull = await fetch("/champion.json");
+        const responseChampionFull = await fetch("/championFull.json");
         if (!responseChampionFull.ok) {
           throw new Error(
             `Network error! status: ${responseChampionFull.status}`
