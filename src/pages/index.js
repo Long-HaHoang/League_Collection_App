@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
+import styled from "styled-components";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 
@@ -15,7 +15,7 @@ export default function Home() {
       <header>
         <h1>League Collection Tracker</h1>
       </header>
-      <section className={styles.section}>
+      <StyledSection>
         <small>
           &quot;League Collection Tracker&quot; is not endorsed by Riot Games
           and does not reflect the views or opinions of Riot Games or anyone
@@ -23,12 +23,27 @@ export default function Home() {
           Riot Games and all associated properties are trademarks or registered
           trademarks of Riot Games, Inc
         </small>
-      </section>
-      <main className={styles.main}>
+      </StyledSection>
+      <StyledMain>
         <Link href={"/champion-gallery"}>Champion Gallery</Link>
         <Link href={"/champion-skins"}>Champion Skins</Link>
-      </main>
+      </StyledMain>
       <Footer />
     </>
   );
 }
+
+const StyledMain = styled.main`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem;
+  border: solid red;
+`;
+
+const StyledSection = styled.section`
+  width: 90vw;
+  border: solid red;
+`;

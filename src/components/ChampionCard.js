@@ -1,35 +1,83 @@
 import { useState } from "react";
 import Image from "next/image";
-import styles from "@/styles/ChampionGallery.module.css";
+import styled from "styled-components";
+import useStore from "@/hooks/useStore";
 
 export default function ChampionCard({ champion }) {
   const [active, setActive] = useState(false);
+  const [increaseCounter, decreaseCounter] = useStore((state) => [
+    state.increaseCounter,
+    state.decreaseCounter,
+  ]);
 
-  function handleClick() {
-    setActive(!active);
+  const championTileURL = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/${champion.key}/${champion.skins[0].id}.jpg`;
+  const championTileLocal = `/champion-tiles/${champion.key}/${champion.skins[0].id}.jpg`;
+
+  function handleAddChampion() {
+    setActive(true);
+    increaseCounter();
+  }
+
+  function handleRemoveChampion() {
+    setActive(false);
+    decreaseCounter();
   }
   return (
-    <li className={styles.li}>
+    <StyledListItems>
       <p>{champion.name}</p>
       {active ? (
         <Image
-          src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/${champion.key}/${champion.skins[0].id}.jpg`}
+          src={championTileURL}
           height={250}
           width={250}
           alt={`${champion.id} default tile`}
+          priority
         />
       ) : (
         <Image
-          src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/${champion.key}/${champion.skins[0].id}.jpg`}
+          src={championTileURL}
           height={250}
           width={250}
           alt={`${champion.id} default tile`}
           style={{ filter: "grayscale(100%)" }}
+          priority
         />
       )}
-      <button type="button" onClick={handleClick}>
+      <button
+        type="button"
+        onClick={active ? handleRemoveChampion : handleAddChampion}
+      >
         {active ? "Remove" : "Collect"}
       </button>
-    </li>
+    </StyledListItems>
   );
 }
+
+const StyledListItems = styled.li`
+  position: relative;
+  border: solid red;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  p {
+    width: 100%;
+    text-align: center;
+    background-color: #00000080;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+  }
+
+  button {
+    position: absolute;
+    bottom: 1em;
+    width: 60%;
+    height: 10%;
+    z-index: 2;
+  }
+`;

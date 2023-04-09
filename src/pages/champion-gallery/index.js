@@ -1,14 +1,14 @@
-import Link from "next/link";
-import Footer from "@/components/Footer";
 import ChampionCard from "@/components/ChampionCard";
 import Head from "next/head";
 import { useState, useEffect } from "react";
-
-import styles from "@/styles/ChampionGallery.module.css";
+import styled from "styled-components";
+import Header from "@/components/Header";
+import useStore from "@/hooks/useStore";
 
 export default function ChampionGalleryPage() {
-  const [championData, setChampionData] = useState([]);
+  const [counterChampion] = useStore((state) => [state.counterChampion]);
   const [versions, setVersions] = useState([]);
+  const [sortedChampions, setSortedChampions] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -21,6 +21,7 @@ export default function ChampionGalleryPage() {
           throw new Error(`HTTP error! status: ${responseVersion.status}`);
         }
         const versions = await responseVersion.json();
+
         setVersions(versions);
 
         // Fetch data from url2 using data from url1
@@ -30,10 +31,24 @@ export default function ChampionGalleryPage() {
         if (!responseChampionFull.ok) {
           throw new Error(`HTTP error! status: ${responseChampionFull.status}`);
         }
-        const championData = await responseChampionFull.json();
-        setChampionData(championData);
+        const championFullData = await responseChampionFull.json();
 
-        setLoading(false);
+        try {
+          setSortedChampions(
+            Object.values(championFullData.data).sort((a, b) => {
+              if (a.name < b.name) {
+                return -1;
+              }
+              if (a.name > b.name) {
+                return 1;
+              }
+              return 0;
+            })
+          );
+        } catch (error) {
+          console.error("Error handling JSON:", error);
+          // handle the error here, e.g. show an error message to the user
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
         // handle the error here, e.g. show an error message to the user
@@ -43,16 +58,6 @@ export default function ChampionGalleryPage() {
     fetchData();
   }, []);
 
-  const sortedChampions = Object.values(championData.data).sort((a, b) => {
-    if (a.name < b.name) {
-      return -1;
-    }
-    if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  });
-
   return (
     <>
       <Head>
@@ -61,21 +66,49 @@ export default function ChampionGalleryPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <h1>Champion Gallery</h1>
-        <Link href={"/"}>&larr; Home</Link>
-      </header>
-      <main>
-        <h2 className={styles.h2}>Champions</h2>
+      <Header>Champion Gallery</Header>
+      <StyledMain>
+        <h2>Champions</h2>
         <h3>Version: {versions[0]}</h3>
-        <p className={styles.p}>{`0 of ${sortedChampions.length}`}</p>
-        <ul className={styles.ul}>
+        <div>
+          <p>{`${counterChampion} of ${sortedChampions.length}`}</p>
+        </div>
+        <ul>
           {sortedChampions.map((champion) => {
             return <ChampionCard key={champion.id} champion={champion} />;
           })}
         </ul>
-      </main>
-      <Footer />
+      </StyledMain>
     </>
   );
 }
+
+const StyledMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  div {
+    border: solid rgb(var(--foreground-rgb));
+    padding: 0.5rem;
+  }
+
+  ul {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+`;
