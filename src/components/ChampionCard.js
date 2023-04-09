@@ -1,15 +1,26 @@
 import { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
+import useStore from "@/hooks/useStore";
 
 export default function ChampionCard({ champion }) {
   const [active, setActive] = useState(false);
+  const [increaseCounter, decreaseCounter] = useStore((state) => [
+    state.increaseCounter,
+    state.decreaseCounter,
+  ]);
 
   const championTileURL = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/${champion.key}/${champion.skins[0].id}.jpg`;
   const championTileLocal = `/champion-tiles/${champion.key}/${champion.skins[0].id}.jpg`;
 
-  function handleClick() {
-    setActive(!active);
+  function handleAddChampion() {
+    setActive(true);
+    increaseCounter();
+  }
+
+  function handleRemoveChampion() {
+    setActive(false);
+    decreaseCounter();
   }
   return (
     <StyledListItems>
@@ -32,7 +43,10 @@ export default function ChampionCard({ champion }) {
           priority
         />
       )}
-      <button type="button" onClick={handleClick}>
+      <button
+        type="button"
+        onClick={active ? handleRemoveChampion : handleAddChampion}
+      >
         {active ? "Remove" : "Collect"}
       </button>
     </StyledListItems>
