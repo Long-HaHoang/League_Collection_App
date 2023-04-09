@@ -4,58 +4,48 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "@/components/Header";
 import useStore from "@/hooks/useStore";
-import staticVersions from "@/../../public/versions.json";
-import staticChampion from "@/../../public/champion.json";
 import { sortChampion } from "@/helper/sortChampion";
 
 export default function ChampionGalleryPage() {
   const [counterChampion] = useStore((state) => [state.counterChampion]);
-  const [versions, setVersions] = useState(staticVersions);
-  const [sortedChampions, setSortedChampions] = useState(
-    sortChampion(staticChampion)
-  );
+  const [versions, setVersions] = useState([]);
+  const [sortedChampions, setSortedChampions] = useState([]);
 
   useEffect(() => {
-    setVersions(staticVersions);
-    setSortedChampions(sortChampion(staticChampion));
+    async function fetchData() {
+      try {
+        // Fetch data from url1
+        const responseVersion = await fetch("/versions.json");
+        if (!responseVersion.ok) {
+          throw new Error(`Network error! status: ${responseVersion.status}`);
+        }
+        const versions = await responseVersion.json();
+
+        setVersions(versions);
+
+        // Fetch data from url2 using data from url1
+        const responseChampionFull = await fetch("/champion.json");
+        if (!responseChampionFull.ok) {
+          throw new Error(
+            `Network error! status: ${responseChampionFull.status}`
+          );
+        }
+        const championFullData = await responseChampionFull.json();
+
+        try {
+          setSortedChampions(sortChampion(championFullData));
+        } catch (error) {
+          console.error("Error handling JSON:", error);
+          // handle the error here, e.g. show an error message to the user
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // handle the error here, e.g. show an error message to the user
+      }
+    }
+
+    fetchData();
   }, []);
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       // Fetch data from url1
-  //       const responseVersion = await fetch(
-  //         "https://ddragon.leagueoflegends.com/api/versions.json"
-  //       );
-  //       if (!responseVersion.ok) {
-  //         throw new Error(`HTTP error! status: ${responseVersion.status}`);
-  //       }
-  //       const versions = await responseVersion.json();
-
-  //       setVersions(versions);
-
-  //       // Fetch data from url2 using data from url1
-  //       const responseChampionFull = await fetch(
-  //         `http://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/en_US/championFull.json`
-  //       );
-  //       if (!responseChampionFull.ok) {
-  //         throw new Error(`HTTP error! status: ${responseChampionFull.status}`);
-  //       }
-  //       const championFullData = await responseChampionFull.json();
-
-  //       try {
-  //         setSortedChampions(sortChampion(championFullData));
-  //       } catch (error) {
-  //         console.error("Error handling JSON:", error);
-  //         // handle the error here, e.g. show an error message to the user
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //       // handle the error here, e.g. show an error message to the user
-  //     }
-  //   }
-
-  //   fetchData();
-  // }, []);
 
   return (
     <>
