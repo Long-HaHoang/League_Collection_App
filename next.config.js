@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
+// next.config.js
 const nextConfig = {
+  i18n: {
+    locales: ["en-US"],
+    defaultLocale: "en-US",
+  },
   compiler: {
     styledComponents: true,
   },
@@ -8,7 +13,7 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  exportPathMap: async function () {
+  exportPathMap: async function (defaultPathMap) {
     const paths = {
       "/": { page: "/" },
       "/imprints/": { page: "/imprints" },
@@ -22,7 +27,20 @@ const nextConfig = {
         page: "/champion-skins",
       },
     };
-    return paths;
+    const newPaths = {};
+    Object.keys(paths).forEach((path) => {
+      const page = paths[path];
+      const newPath = {
+        ...page,
+        query: {
+          ...page.query,
+          __nextLocale: "en-US",
+          __nextDefaultLocale: "en-US",
+        },
+      };
+      newPaths[path] = newPath;
+    });
+    return newPaths;
   },
 };
 
