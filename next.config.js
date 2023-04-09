@@ -10,14 +10,20 @@ const nextConfig = {
   trailingSlash: true,
   exportPathMap: async function () {
     const paths = {
-      "/": { page: "/" },
-      "/imprints/": { page: "/imprints" },
-      "/data-privacy/": { page: "/data-privacy" },
+      "/": { page: "/", query: { __nextDefaultLocale: "en" } },
+      "/imprints/": { page: "/imprints", query: { __nextDefaultLocale: "en" } },
+      "/data-privacy/": {
+        page: "/data-privacy",
+        query: { __nextDefaultLocale: "en" },
+      },
       "/champion-gallery/": {
         page: "/champion-gallery",
         query: { __nextDefaultLocale: "en" },
       },
-      "/champion-skins/": { page: "/champion-skins" },
+      "/champion-skins/": {
+        page: "/champion-skins",
+        query: { __nextDefaultLocale: "en" },
+      },
     };
     return paths;
   },
