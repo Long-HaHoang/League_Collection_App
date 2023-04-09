@@ -10,7 +10,7 @@ export default function ChampionCard({ champion }) {
     state.decreaseCounter,
   ]);
 
-  const championTileURL = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/${champion.key}/${champion.key}000.jpg`;
+  const championTileURL = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/${champion.key}/${champion.skins[0].id}.jpg`;
   const championTileLocal = `/champion-tiles/${champion.key}/${champion.key}000.jpg`;
 
   function handleAddChampion() {
