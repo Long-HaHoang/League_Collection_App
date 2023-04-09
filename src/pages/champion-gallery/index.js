@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "@/components/Header";
 import useStore from "@/hooks/useStore";
+import { sortChampion } from "@/helper/sortChampion";
 
 export default function ChampionGalleryPage() {
   const [counterChampion] = useStore((state) => [state.counterChampion]);
@@ -14,37 +15,25 @@ export default function ChampionGalleryPage() {
     async function fetchData() {
       try {
         // Fetch data from url1
-        const responseVersion = await fetch(
-          "https://ddragon.leagueoflegends.com/api/versions.json"
-        );
+        const responseVersion = await fetch("/versions.json");
         if (!responseVersion.ok) {
-          throw new Error(`HTTP error! status: ${responseVersion.status}`);
+          throw new Error(`Network error! status: ${responseVersion.status}`);
         }
         const versions = await responseVersion.json();
 
         setVersions(versions);
 
         // Fetch data from url2 using data from url1
-        const responseChampionFull = await fetch(
-          `http://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/en_US/championFull.json`
-        );
+        const responseChampionFull = await fetch("/championFull.json");
         if (!responseChampionFull.ok) {
-          throw new Error(`HTTP error! status: ${responseChampionFull.status}`);
+          throw new Error(
+            `Network error! status: ${responseChampionFull.status}`
+          );
         }
         const championFullData = await responseChampionFull.json();
 
         try {
-          setSortedChampions(
-            Object.values(championFullData.data).sort((a, b) => {
-              if (a.name < b.name) {
-                return -1;
-              }
-              if (a.name > b.name) {
-                return 1;
-              }
-              return 0;
-            })
-          );
+          setSortedChampions(sortChampion(championFullData));
         } catch (error) {
           console.error("Error handling JSON:", error);
           // handle the error here, e.g. show an error message to the user
