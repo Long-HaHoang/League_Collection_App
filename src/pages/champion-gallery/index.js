@@ -3,8 +3,10 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "@/components/Header";
+import useStore from "@/hooks/useStore";
 
 export default function ChampionGalleryPage() {
+  const [counterChampion] = useStore((state) => [state.counterChampion]);
   const [versions, setVersions] = useState([]);
   const [sortedChampions, setSortedChampions] = useState([]);
 
@@ -69,7 +71,7 @@ export default function ChampionGalleryPage() {
         <h2>Champions</h2>
         <h3>Version: {versions[0]}</h3>
         <div>
-          <p>{`0 of ${sortedChampions.length}`}</p>
+          <p>{`${counterChampion} of ${sortedChampions.length}`}</p>
         </div>
         <ul>
           {sortedChampions.map((champion) => {
