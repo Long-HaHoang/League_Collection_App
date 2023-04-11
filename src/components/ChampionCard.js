@@ -25,6 +25,8 @@ export default function ChampionCard({ champion }) {
     decreaseCounter();
   }
 
+  console.log(isOwned(ownedChampion, champion));
+
   return (
     <StyledListItems>
       <p>{champion.name}</p>
