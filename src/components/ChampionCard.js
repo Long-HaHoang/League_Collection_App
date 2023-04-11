@@ -10,7 +10,7 @@ export default function ChampionCard({ champion }) {
     updateOwnedChampion,
     removeOwnedChampion,
   ] = useStore((state) => [
-    state.isOwned,
+    state.isOwned(champion),
     state.increaseCounter,
     state.decreaseCounter,
     state.updateOwnedChampion,
@@ -39,15 +39,15 @@ export default function ChampionCard({ champion }) {
         height={250}
         width={250}
         alt={`${champion.id} default tile`}
-        isOwned={isOwned(champion)}
+        isOwned={isOwned}
         priority
       />
 
       <button
         type="button"
-        onClick={isOwned(champion) ? handleRemoveChampion : handleAddChampion}
+        onClick={isOwned ? handleRemoveChampion : handleAddChampion}
       >
-        {isOwned(champion) ? "Remove" : "Collect"}
+        {isOwned ? "Remove" : "Collect"}
       </button>
     </StyledListItems>
   );
