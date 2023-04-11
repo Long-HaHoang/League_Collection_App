@@ -7,8 +7,17 @@ import useStore from "@/hooks/useStore";
 import { sortChampionObjectToArray } from "@/helper/sortChampionObjectToArray";
 
 export default function ChampionGalleryPage() {
-  const [counterChampion] = useStore((state) => [state.counterChampion]);
-  const [versions, setVersions] = useState([]);
+  // store states
+  const [counterChampion, versions, unownedChampion] = useStore((state) => [
+    state.counterChampion,
+    state.versions,
+    state.unownedChampion,
+  ]);
+  // store methods
+  const [setVersions, setUnownedChampion] = useStore((state) => [
+    state.setVersions,
+    state.setUnownedChampion,
+  ]);
   const [sortedChampions, setSortedChampions] = useState([]);
 
   useEffect(() => {
