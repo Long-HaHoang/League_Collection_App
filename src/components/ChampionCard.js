@@ -30,13 +30,13 @@ export default function ChampionCard({ champion }) {
   return (
     <StyledListItems>
       <p>{champion.name}</p>
-      {active ? (
+      {isOwned(ownedChampion, champion) ? (
         <StyledImage
           src={championTileURL}
           height={250}
           width={250}
           alt={`${champion.id} default tile`}
-          isOwned={false}
+          isOwned={true}
           priority
         />
       ) : (
@@ -45,7 +45,7 @@ export default function ChampionCard({ champion }) {
           height={250}
           width={250}
           alt={`${champion.id} default tile`}
-          isOwned={true}
+          isOwned={false}
           priority
         />
       )}
@@ -90,7 +90,7 @@ const StyledListItems = styled.li`
 
 const StyledImage = styled(Image)`
   ${(props) =>
-    props.isOwned &&
+    !props.isOwned &&
     css`
       filter: grayscale(100%);
     `}
