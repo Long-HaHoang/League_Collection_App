@@ -35,7 +35,7 @@ export default function ChampionCard({ champion }) {
       <p>{champion.name}</p>
 
       <StyledImage
-        src={championTileURL}
+        src={championTileLocal}
         height={250}
         width={250}
         alt={`${champion.id} default tile`}
