@@ -7,10 +7,13 @@ import isOwned from "@/helper/isOwned";
 export default function ChampionCard({ champion }) {
   const [active, setActive] = useState(false);
   const [ownedChampion] = useStore((state) => [state.ownedChampion]);
-  const [increaseCounter, decreaseCounter] = useStore((state) => [
-    state.increaseCounter,
-    state.decreaseCounter,
-  ]);
+  const [increaseCounter, decreaseCounter, updateOwnedChampion] = useStore(
+    (state) => [
+      state.increaseCounter,
+      state.decreaseCounter,
+      state.updateOwnedChampion,
+    ]
+  );
 
   const championTileURL = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/${champion.key}/${champion.skins[0].id}.jpg`;
   const championTileLocal = `/champion-tiles/${champion.key}/${champion.key}000.jpg`;
@@ -18,14 +21,13 @@ export default function ChampionCard({ champion }) {
   function handleAddChampion() {
     setActive(true);
     increaseCounter();
+    updateOwnedChampion(champion);
   }
 
   function handleRemoveChampion() {
     setActive(false);
     decreaseCounter();
   }
-
-  console.log(isOwned(ownedChampion, champion));
 
   return (
     <StyledListItems>
@@ -36,7 +38,7 @@ export default function ChampionCard({ champion }) {
         height={250}
         width={250}
         alt={`${champion.id} default tile`}
-        isOwned={false}
+        isOwned={isOwned(ownedChampion, champion)}
         priority
       />
 
