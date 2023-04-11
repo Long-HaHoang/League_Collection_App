@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 // next.config.js
 const nextConfig = {
-  i18n: {
-    locales: ["en-US"],
-    defaultLocale: "en-US",
-  },
   compiler: {
     styledComponents: true,
   },
@@ -32,11 +28,6 @@ const nextConfig = {
       const page = paths[path];
       const newPath = {
         ...page,
-        query: {
-          ...page.query,
-          __nextLocale: "en-US",
-          __nextDefaultLocale: "en-US",
-        },
       };
       newPaths[path] = newPath;
     });

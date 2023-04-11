@@ -39,7 +39,7 @@ export default function ChampionCard({ champion }) {
         height={250}
         width={250}
         alt={`${champion.id} default tile`}
-        isOwned={isOwned}
+        isowned={isOwned.toString()}
         priority
       />
 
@@ -84,7 +84,7 @@ const StyledListItems = styled.li`
 
 const StyledImage = styled(Image)`
   ${(props) =>
-    !props.isOwned &&
+    props.isowned === "false" &&
     css`
       filter: grayscale(100%);
     `}
