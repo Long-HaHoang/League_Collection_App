@@ -41,6 +41,13 @@ const config = (set) => {
         draft.ownedChampion.push(_champion);
       });
     },
+    removeOwnedChampion: (_champion) => {
+      set((draft) => {
+        draft.ownedChampion = draft.ownedChampion.filter(
+          (element) => element.id !== _champion.id
+        );
+      });
+    },
   };
 
   return initalState;
