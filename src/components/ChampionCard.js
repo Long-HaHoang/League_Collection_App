@@ -9,12 +9,14 @@ export default function ChampionCard({ champion }) {
     decreaseCounter,
     updateOwnedChampion,
     removeOwnedChampion,
+    removeUnownedChampion,
   ] = useStore((state) => [
     state.isOwned(champion),
     state.increaseCounter,
     state.decreaseCounter,
     state.updateOwnedChampion,
     state.removeOwnedChampion,
+    state.removeUnownedChampion,
   ]);
 
   const championTileURL = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-tiles/${champion.key}/${champion.skins[0].id}.jpg`;
@@ -23,6 +25,7 @@ export default function ChampionCard({ champion }) {
   function handleAddChampion() {
     increaseCounter();
     updateOwnedChampion(champion);
+    removeUnownedChampion(champion);
   }
 
   function handleRemoveChampion() {
