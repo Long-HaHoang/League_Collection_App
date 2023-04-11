@@ -42,7 +42,7 @@ export default function ChampionGalleryPage() {
         const championFullData = await responseChampionFull.json();
 
         try {
-          setSortedChampions(sortChampionObjectToArray(championFullData));
+          setUnownedChampion(sortChampionObjectToArray(championFullData));
         } catch (error) {
           console.error("Error handling JSON:", error);
           // handle the error here, e.g. show an error message to the user
@@ -69,10 +69,10 @@ export default function ChampionGalleryPage() {
         <h2>Champions</h2>
         <h3>Version: {versions[0]}</h3>
         <div>
-          <p>{`${counterChampion} of ${sortedChampions.length}`}</p>
+          <p>{`${counterChampion} of ${unownedChampion.length}`}</p>
         </div>
         <ul>
-          {sortedChampions.map((champion) => {
+          {unownedChampion.map((champion) => {
             return <ChampionCard key={champion.id} champion={champion} />;
           })}
         </ul>
