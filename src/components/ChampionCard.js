@@ -8,6 +8,7 @@ export default function ChampionCard({ champion }) {
     increaseCounter,
     decreaseCounter,
     updateOwnedChampion,
+    updateUnownedChampion,
     removeOwnedChampion,
     removeUnownedChampion,
   ] = useStore((state) => [
@@ -15,6 +16,7 @@ export default function ChampionCard({ champion }) {
     state.increaseCounter,
     state.decreaseCounter,
     state.updateOwnedChampion,
+    state.updateUnownedChampion,
     state.removeOwnedChampion,
     state.removeUnownedChampion,
   ]);
@@ -30,6 +32,7 @@ export default function ChampionCard({ champion }) {
 
   function handleRemoveChampion() {
     decreaseCounter();
+    updateUnownedChampion(champion);
     removeOwnedChampion(champion);
   }
 
