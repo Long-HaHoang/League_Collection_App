@@ -18,7 +18,6 @@ export default function ChampionGalleryPage() {
     state.setVersions,
     state.setUnownedChampion,
   ]);
-  const [sortedChampions, setSortedChampions] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
