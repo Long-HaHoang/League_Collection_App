@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import useStore from "@/hooks/useStore";
 import isOwned from "@/helper/isOwned";
 
@@ -29,20 +29,21 @@ export default function ChampionCard({ champion }) {
     <StyledListItems>
       <p>{champion.name}</p>
       {active ? (
-        <Image
+        <StyledImage
           src={championTileURL}
           height={250}
           width={250}
           alt={`${champion.id} default tile`}
+          isOwned={false}
           priority
         />
       ) : (
-        <Image
+        <StyledImage
           src={championTileURL}
           height={250}
           width={250}
           alt={`${champion.id} default tile`}
-          style={{ filter: "grayscale(100%)" }}
+          isOwned={true}
           priority
         />
       )}
@@ -83,4 +84,12 @@ const StyledListItems = styled.li`
     height: 10%;
     z-index: 2;
   }
+`;
+
+const StyledImage = styled(Image)`
+  ${(props) =>
+    props.isOwned &&
+    css`
+      filter: grayscale(100%);
+    `}
 `;
