@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "@/components/Header";
 import useStore from "@/hooks/useStore";
-import { sortChampion } from "@/helper/sortChampion";
+import { sortChampionObjectToArray } from "@/helper/sortChampionObjectToArray";
 
 export default function ChampionGalleryPage() {
   const [counterChampion] = useStore((state) => [state.counterChampion]);
@@ -33,7 +33,7 @@ export default function ChampionGalleryPage() {
         const championFullData = await responseChampionFull.json();
 
         try {
-          setSortedChampions(sortChampion(championFullData));
+          setSortedChampions(sortChampionObjectToArray(championFullData));
         } catch (error) {
           console.error("Error handling JSON:", error);
           // handle the error here, e.g. show an error message to the user

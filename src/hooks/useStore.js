@@ -5,7 +5,8 @@ import createWithLocalStorage from "./createWithLocalStorage";
 const config = (set) => {
   const initalState = {
     counterChampion: 0,
-    ownedChampions: [],
+    ownedChampion: [],
+    unownedChampion: [],
 
     // counter methods
     increaseCounter: () => {
@@ -19,10 +20,12 @@ const config = (set) => {
       });
     },
 
-    // champion
+    // unowned champion
+
+    // owned champion
     updateOwnedChampion: (_champion) => {
       set((draft) => {
-        draft.ownedChampions.push(_champion);
+        draft.ownedChampion.push(_champion);
       });
     },
   };
