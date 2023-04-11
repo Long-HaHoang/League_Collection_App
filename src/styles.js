@@ -22,7 +22,6 @@ const globalStytle = css`
   }
 
   body {
-    border: solid gold;
     height: 100%;
     color: rgb(var(--foreground-rgb));
     background: rgb(var(--background-rgb));

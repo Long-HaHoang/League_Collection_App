@@ -31,7 +31,7 @@ export default function ChampionCard({ champion }) {
   }
 
   return (
-    <StyledListItems>
+    <StyledListItems owned={isOwned.toString()}>
       <p>{champion.name}</p>
 
       <StyledImage
@@ -54,14 +54,25 @@ export default function ChampionCard({ champion }) {
 }
 
 const StyledListItems = styled.li`
+  ${(props) =>
+    props.owned === "true"
+      ? css`
+          border: solid gold;
+        `
+      : css`
+          border: solid darkgray;
+        `}
   position: relative;
-  border: solid red;
   list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  &:hover {
+    border: solid gold;
+  }
 
   p {
     width: 100%;
@@ -79,6 +90,10 @@ const StyledListItems = styled.li`
     width: 60%;
     height: 10%;
     z-index: 2;
+  }
+
+  button:focus {
+    border: solid red;
   }
 `;
 
