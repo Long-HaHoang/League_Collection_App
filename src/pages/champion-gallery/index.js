@@ -67,7 +67,7 @@ export default function ChampionGalleryPage() {
       <Header>Champion Gallery</Header>
       <StyledMain>
         <h2>Champions</h2>
-        <h3>Version: {versions[0]}</h3>
+        <p>Version: {versions[0]}</p>
         <div>
           <p>{`${counterChampion} of ${unownedChampion.length}`}</p>
         </div>
