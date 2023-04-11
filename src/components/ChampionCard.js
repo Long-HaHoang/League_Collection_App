@@ -1,11 +1,9 @@
-import { useState } from "react";
 import Image from "next/image";
 import styled, { css } from "styled-components";
 import useStore from "@/hooks/useStore";
 import isOwned from "@/helper/isOwned";
 
 export default function ChampionCard({ champion }) {
-  const [active, setActive] = useState(false);
   const [ownedChampion] = useStore((state) => [state.ownedChampion]);
   const [
     increaseCounter,
