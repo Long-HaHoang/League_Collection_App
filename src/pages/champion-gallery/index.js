@@ -8,11 +8,14 @@ import { sortChampionObjectToArray } from "@/helper/sortChampionObjectToArray";
 
 export default function ChampionGalleryPage() {
   // store states
-  const [counterChampion, versions, unownedChampion] = useStore((state) => [
-    state.counterChampion,
-    state.versions,
-    state.unownedChampion,
-  ]);
+  const [counterChampion, versions, unownedChampion, ownedChampion] = useStore(
+    (state) => [
+      state.counterChampion,
+      state.versions,
+      state.unownedChampion,
+      state.ownedChampion,
+    ]
+  );
   // store methods
   const [setVersions, setUnownedChampion] = useStore((state) => [
     state.setVersions,
@@ -71,11 +74,22 @@ export default function ChampionGalleryPage() {
         <div>
           <p>{`${counterChampion} of ${unownedChampion.length}`}</p>
         </div>
+        <h3>Unowned Champions</h3>
         <ul>
           {unownedChampion.map((champion) => {
             return <ChampionCard key={champion.id} champion={champion} />;
           })}
         </ul>
+        {ownedChampion.length > 0 && (
+          <>
+            <h3>Owned Champions</h3>
+            <ul>
+              {ownedChampion.map((champion) => {
+                return <ChampionCard key={champion.id} champion={champion} />;
+              })}
+            </ul>
+          </>
+        )}
       </StyledMain>
     </>
   );
