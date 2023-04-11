@@ -30,25 +30,16 @@ export default function ChampionCard({ champion }) {
   return (
     <StyledListItems>
       <p>{champion.name}</p>
-      {isOwned(ownedChampion, champion) ? (
-        <StyledImage
-          src={championTileURL}
-          height={250}
-          width={250}
-          alt={`${champion.id} default tile`}
-          isOwned={true}
-          priority
-        />
-      ) : (
-        <StyledImage
-          src={championTileURL}
-          height={250}
-          width={250}
-          alt={`${champion.id} default tile`}
-          isOwned={false}
-          priority
-        />
-      )}
+
+      <StyledImage
+        src={championTileURL}
+        height={250}
+        width={250}
+        alt={`${champion.id} default tile`}
+        isOwned={false}
+        priority
+      />
+
       <button
         type="button"
         onClick={active ? handleRemoveChampion : handleAddChampion}
