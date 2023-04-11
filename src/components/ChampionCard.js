@@ -1,16 +1,16 @@
 import Image from "next/image";
 import styled, { css } from "styled-components";
 import useStore from "@/hooks/useStore";
-import isOwned from "@/helper/isOwned";
 
 export default function ChampionCard({ champion }) {
-  const [ownedChampion] = useStore((state) => [state.ownedChampion]);
   const [
+    isOwned,
     increaseCounter,
     decreaseCounter,
     updateOwnedChampion,
     removeOwnedChampion,
   ] = useStore((state) => [
+    state.isOwned,
     state.increaseCounter,
     state.decreaseCounter,
     state.updateOwnedChampion,
@@ -21,13 +21,11 @@ export default function ChampionCard({ champion }) {
   const championTileLocal = `/champion-tiles/${champion.key}/${champion.key}000.jpg`;
 
   function handleAddChampion() {
-    setActive(true);
     increaseCounter();
     updateOwnedChampion(champion);
   }
 
   function handleRemoveChampion() {
-    setActive(false);
     decreaseCounter();
     removeOwnedChampion(champion);
   }
@@ -41,19 +39,15 @@ export default function ChampionCard({ champion }) {
         height={250}
         width={250}
         alt={`${champion.id} default tile`}
-        isOwned={isOwned(ownedChampion, champion)}
+        isOwned={isOwned(champion)}
         priority
       />
 
       <button
         type="button"
-        onClick={
-          isOwned(ownedChampion, champion)
-            ? handleRemoveChampion
-            : handleAddChampion
-        }
+        onClick={isOwned(champion) ? handleRemoveChampion : handleAddChampion}
       >
-        {isOwned(ownedChampion, champion) ? "Remove" : "Collect"}
+        {isOwned(champion) ? "Remove" : "Collect"}
       </button>
     </StyledListItems>
   );

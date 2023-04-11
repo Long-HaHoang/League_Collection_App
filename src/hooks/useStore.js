@@ -48,6 +48,11 @@ const config = (set) => {
         );
       });
     },
+    isOwned: (_champion) => {
+      return !!useStore
+        .getState()
+        .ownedChampion.find((element) => element.id === _champion.id);
+    },
   };
 
   return initalState;
