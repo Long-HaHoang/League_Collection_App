@@ -2,9 +2,11 @@ import { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import useStore from "@/hooks/useStore";
+import isOwned from "@/helper/isOwned";
 
 export default function ChampionCard({ champion }) {
   const [active, setActive] = useState(false);
+  const [ownedChampion] = useStore((state) => [state.ownedChampion]);
   const [increaseCounter, decreaseCounter] = useStore((state) => [
     state.increaseCounter,
     state.decreaseCounter,
@@ -22,6 +24,7 @@ export default function ChampionCard({ champion }) {
     setActive(false);
     decreaseCounter();
   }
+
   return (
     <StyledListItems>
       <p>{champion.name}</p>
