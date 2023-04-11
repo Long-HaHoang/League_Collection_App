@@ -34,6 +34,13 @@ const config = (set) => {
         draft.unownedChampion = _unownedChampionArrary;
       });
     },
+    removeUnownedChampion: (_champion) => {
+      set((draft) => {
+        draft.unownedChampion = draft.unownedChampion.filter(
+          (element) => element.id !== _champion.id
+        );
+      });
+    },
 
     // owned champion
     updateOwnedChampion: (_champion) => {
