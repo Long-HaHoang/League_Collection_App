@@ -43,5 +43,4 @@ const StyledMain = styled.main`
 
 const StyledSection = styled.section`
   width: 90vw;
-  border: solid red;
 `;
